@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: Build_and_publish_jar
     name: buld and publish docker image
-      steps:
+    steps:
       # Login to GHCR
         - name: Configure AWS credentials
           uses: aws-actions/configure-aws-credentials@v2
