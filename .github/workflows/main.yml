@@ -9,5 +9,3 @@ jobs:
     uses: Ritik0306/acs_java/.github/workflows/build.yml@test/build_change
     secrets:
       GITHUB: ${{ secrets.GITHUB }}
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
