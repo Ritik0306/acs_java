@@ -4,6 +4,10 @@ on:
     secrets:
         GITHUB:
           required: true
+        AWS_ACCESS_KEY_ID:
+          required: true
+        AWS_SECRET_ACCESS_KEY:
+          required: true
 
 jobs:
   Build_and_publish_jar:
