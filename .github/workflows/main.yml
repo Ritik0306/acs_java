@@ -13,9 +13,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: ci
         ports: 
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 --name percona
     steps:
       - name: change authentication method
         run: |
-          sleep 120
-          mysql --host 127.0.0.1 --port 3306 -uroot -pCI
+          docker network inspect $(docker inspect --format '{{.NetworkSettings.Networks.bridge.Name}}' percona
