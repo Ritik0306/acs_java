@@ -5,7 +5,7 @@ on:
 jobs:
   Docker_build:
     name: Code checkout
-    runs-on: ["self-hosted", "core-qa"]
+    runs-on: ubuntu-latest
     services:
       mydb:
         image: percona:5.6
