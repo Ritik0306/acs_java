@@ -28,4 +28,4 @@ jobs:
 
       - name: Run Ubuntu container in the same network
         run: |
-          docker run --network container:my-percona-container --entrypoint /bin/sh mysql -c "mysql -hpercona -uroot -pci --execute='SHOW DATABASES;'"
+          docker run --name test --link my-percona-container --entrypoint /bin/sh ubuntu:latest -c "cat /etc/hosts"
