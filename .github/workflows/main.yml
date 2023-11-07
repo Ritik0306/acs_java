@@ -17,4 +17,4 @@ jobs:
       - name: change authentication method
         run: |
           sleep 120
-          mysql --host mysql --port 3306 -uroot -pCI
+          mysql --host 127.0.0.1 --port 3306 -uroot -pCI
