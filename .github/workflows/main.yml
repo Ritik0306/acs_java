@@ -2,20 +2,21 @@ name: Build and Push
 on:
   push:
 
-jobs:  
-  test_migrations:
-    name: service test
-    runs-on: ubuntu-latest
+jobs:
+  Docker_build:
+    name: Code checkout
+    runs-on: ["self-hosted", "core-qa"]
     services:
-      mysql:
-        image: mysql:8.0.21
+      mydb:
+        image: percona:5.6
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: unittest
-        ports:
+          MYSQL_ROOT_PASSWORD: ci
+        ports: 
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      -
-        name: Checkout Project
-        run: mysql --host 127.0.0.1 --port 3306 -uroot -proot -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'"
+      - name: Build and Push Image
+        run: |
+          sleep 120
+          docker ps -a
+          mysql -hmydb -uroot -pci
