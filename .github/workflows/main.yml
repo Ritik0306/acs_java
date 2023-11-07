@@ -13,9 +13,9 @@ jobs:
           MYSQL_ROOT_PASSWORD: ci
         ports: 
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 --name percona
     steps:
       - name: Get Container Name
         id: get-container-name
         run: |
+          docker ps -a
           docker network ls
