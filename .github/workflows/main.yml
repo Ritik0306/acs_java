@@ -23,6 +23,6 @@ jobs:
 
       - name: Run Ubuntu container in the same network
         run: |
-          echo ${{ steps.get-container-id.output.Percona_Network_ID }}
-          echo ${{ steps.get-container-id.output.Percona_Container_IP }}
+          echo ${{ steps.get-container-id.outputs.Percona_Network_ID }}
+          echo ${{ steps.get-container-id.outputs.Percona_Container_IP }}
           docker run -it --network ${{ steps.get-container-id.output.Percona_Network_ID }} --add-host percona:${{ steps.get-container-id.output.Percona_Container_IP }} ubuntu
