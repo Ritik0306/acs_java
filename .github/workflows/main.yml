@@ -28,4 +28,4 @@ jobs:
 
       - name: Run Ubuntu container in the same network
         run: |
-          docker run --network container:my-percona-container --entrypoint /bin/sh mysql -c "mysql -hpercona -uroot -pci"
+          docker run --network container:my-percona-container --entrypoint /bin/sh mysql -c "mysql -hpercona -uroot -pci --execute="SET FOREIGN_KEY_CHECKS=0;SHOW DATABASES;""
