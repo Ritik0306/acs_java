@@ -7,7 +7,7 @@ jobs:
     name: Code checkout
     runs-on: ubuntu-latest
     services:
-      mydb:
+      percona:
         image: percona:5.6
         env:
           MYSQL_ROOT_PASSWORD: ci
@@ -15,6 +15,9 @@ jobs:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
+      - name: Install the MySQL client
+        run: sudo apt-get update && sudo apt-get -f install mysql-client -y
+        
       - name: Build and Push Image
         run: |
           sleep 120
