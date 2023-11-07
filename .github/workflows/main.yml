@@ -19,3 +19,8 @@ jobs:
         run: |
           docker ps -a
           docker network ls
+      - name: pull
+        run: |
+          docker pull ubuntu:latest && docker run ubuntu
+          docker ps -a
+          docker network ls
