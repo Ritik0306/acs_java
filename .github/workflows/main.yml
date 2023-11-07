@@ -15,6 +15,8 @@ jobs:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 --name percona
     steps:
-      - name: change authentication method
+      - name: Get Container Name
+        id: get-container-name
         run: |
-          docker network inspect $(docker inspect --format '{{.NetworkSettings.Networks.bridge.Name}}' percona)
+          CONTAINER_NAME=$(docker ps --filter "label=com.github.actions.job=$GITHUB_JOB" --format "{{.Names}}")
+          echo "Container Name: $CONTAINER_NAME"
