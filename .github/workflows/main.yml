@@ -18,5 +18,4 @@ jobs:
       - name: Get Container Name
         id: get-container-name
         run: |
-          CONTAINER_NAME=$(docker ps --filter "label=com.github.actions.job=$GITHUB_JOB" --format "{{.Names}}")
-          echo "Container Name: $CONTAINER_NAME"
+          docker network ls
