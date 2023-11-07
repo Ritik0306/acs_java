@@ -25,4 +25,4 @@ jobs:
         run: |
           echo ${{ steps.get-container-id.outputs.Percona_Network_ID }}
           echo ${{ steps.get-container-id.outputs.Percona_Container_IP }}
-          docker run -it --network ${{ steps.get-container-id.output.Percona_Network_ID }} --add-host percona:${{ steps.get-container-id.output.Percona_Container_IP }} --entrypoint /bin/sh ubuntu -c "cat /etc/hosts"
+          docker run -it --network ${{ steps.get-container-id.outputs.Percona_Network_ID }} --add-host percona:${{ steps.get-container-id.outputs.Percona_Container_IP }} --entrypoint /bin/sh ubuntu -c "cat /etc/hosts"
