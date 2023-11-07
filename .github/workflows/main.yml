@@ -13,19 +13,15 @@ jobs:
           MYSQL_ROOT_PASSWORD: ci
         ports: 
           - 3306:3306
-        options: --name my-percona-container
     steps:
-      # - name: Get Container Name
-      #   id: get-container-name
-      #   run: |
-      #     docker ps -a
-      #     docker network ls
-      #     docker inspect -f '{{range .NetworkSettings.Networks}}{{.NetworkName}}{{end}}' my-percona-container
-      # - name: Create a custom network
-      #   run: |
-      #     docker network create my_network
-      #     echo "set-env name=MY_NETWORK:=my_network"
+      - name: Get Container Name
+        id: get-container-id
+        run: |
+          echo "Percona_Network_ID=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.NetworkID}}{{end}}' percona)" >> $GITHUB_OUTPUT
+          echo "Percona_Container_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' percona)" >> $GITHUB_OUTPUT
 
       - name: Run Ubuntu container in the same network
         run: |
-          docker run --name test --link my-percona-container --entrypoint /bin/sh ubuntu:latest -c "cat /etc/hosts"
+          echo ${{ steps.get-container-id.output.Percona_Network_ID }}
+          echo ${{ steps.get-container-id.output.Percona_Container_IP }}
+          docker run -it --network ${{ steps.get-container-id.output.Percona_Network_ID }} --add-host percona:${{ steps.get-container-id.output.Percona_Container_IP }} ubuntu sh
