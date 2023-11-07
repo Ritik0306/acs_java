@@ -26,7 +26,6 @@ jobs:
       #     docker network create my_network
       #     echo "set-env name=MY_NETWORK:=my_network"
 
-      # - name: Run Ubuntu container in the same network
-      #   run: |
-      #     docker pull ubuntu:latest
-      #     docker run --network $MY_NETWORK --entrypoint /bin/sh ubuntu:latest -c "sudo apt update && sudo apt install mysql-server -y && mysql -hpercona -uroot -pci"
+      - name: Run Ubuntu container in the same network
+        run: |
+          docker run --network container:my-percona-container --entrypoint /bin/sh mysql -c "mysql -hpercona -uroot -pci"
