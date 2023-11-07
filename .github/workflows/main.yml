@@ -3,23 +3,18 @@ on:
   push:
 
 jobs:
-  Docker_build:
-    name: Code checkout
+  PHPUnit:
     runs-on: ubuntu-latest
     services:
-      percona:
-        image: percona:5.6
+      mysql:
+        image: mysql:8.0.21
         env:
           MYSQL_ROOT_PASSWORD: ci
-        ports: 
+        ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - name: Install the MySQL client
-        run: sudo apt-get update && sudo apt-get -f install mysql-client -y
-        
-      - name: Build and Push Image
+      - name: change authentication method
         run: |
           sleep 120
-          docker ps -a
-          mysql -hpercona -uroot -pci
+          mysql --host mysql --port 3306 -uroot -pCI
