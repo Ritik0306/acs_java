@@ -7,6 +7,8 @@ jobs:
     name: Code checkout
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
       - name: Run Ubuntu container in the same network
         run: |
           docker build -t test:latest . && docker run --entrypoint /bin/sh test:latest -c "docker --version"
