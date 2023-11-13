@@ -1,4 +1,3 @@
-FROM ubuntu:latest
-RUN apt-get update && \
-    apt-get install -y \
-  docker.io
+FROM alpine:3.14
+RUN apk add --no-cache \
+docker
