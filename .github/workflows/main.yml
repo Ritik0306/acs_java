@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Run Ubuntu container in the same network
         run: |
-          docker build -t test:lateset . && docker run --entrypoint /bin/sh test:latest -c "docker --version"
+          docker build -t test:latest . && docker run --entrypoint /bin/sh test:latest -c "docker --version"
