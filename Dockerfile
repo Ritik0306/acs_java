@@ -1,5 +1,15 @@
-FROM tomcat:latest
-COPY  ./target/*.war /usr/local/tomcat/webapps/
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
-
+FROM ubuntu:latest
+RUN apk add --update --no-cache  \
+  coreutils \
+  python3 \
+  py3-pip \
+  wget \
+  bash \
+  unzip \
+  curl \
+  sudo \
+  git \
+  make \
+  npm \
+  jq \
+  docker

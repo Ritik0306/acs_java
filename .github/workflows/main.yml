@@ -6,23 +6,7 @@ jobs:
   Docker_build:
     name: Code checkout
     runs-on: ubuntu-latest
-    services:
-      percona:
-        image: percona:5.6
-        env:
-          MYSQL_ROOT_PASSWORD: ci
-        ports: 
-          - 3306:3306
-        options: --name my-percona-container
     steps:
-      - name: Get Container Name
-        id: get-container-id
-        run: |
-          echo "Percona_Network_ID=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.NetworkID}}{{end}}' my-percona-container)" >> $GITHUB_OUTPUT
-          echo "Percona_Container_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-percona-container)" >> $GITHUB_OUTPUT
-
       - name: Run Ubuntu container in the same network
         run: |
-          echo ${{ steps.get-container-id.outputs.Percona_Network_ID }}
-          echo ${{ steps.get-container-id.outputs.Percona_Container_IP }}
-          docker run --network ${{ steps.get-container-id.outputs.Percona_Network_ID }} --add-host percona:${{ steps.get-container-id.outputs.Percona_Container_IP }} --entrypoint /bin/sh ubuntu -c "cat /etc/hosts"
+          docker build -t test:lateset . && docker run --entrypoint /bin/sh test:latest -c "docker --version"
