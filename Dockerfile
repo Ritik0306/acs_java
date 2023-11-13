@@ -1,5 +1,6 @@
 FROM ubuntu:latest
-RUN apk add --update --no-cache  \
+RUN apt-get update && \
+    apt-get install -y \
   coreutils \
   python3 \
   py3-pip \
@@ -12,4 +13,4 @@ RUN apk add --update --no-cache  \
   make \
   npm \
   jq \
-  docker
+  docker.io
