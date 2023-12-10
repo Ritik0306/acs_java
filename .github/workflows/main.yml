@@ -9,4 +9,5 @@ jobs:
     steps:
       - name: Run Ubuntu container in the same network
         run: |
-          echo ${{ vars.TEST }}
+          echo ${{ vars.TEST }} > test.txt
+          echo $test.txt
