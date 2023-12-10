@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Run Ubuntu container in the same network
         run: |
-          echo $TEST
+          echo ${{ vars.TEST }}
