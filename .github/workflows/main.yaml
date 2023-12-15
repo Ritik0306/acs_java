@@ -1,15 +1,6 @@
 name: Build and Push
 on:
-  workflow_dispatch:
-    inputs:
-      env:
-        description: 'Target environment'
-        required: true
-        type: choice
-      ref:
-        description: Git Ref (Default to workflow branch)
-        required: false
-
+  push:
 jobs:
   Docker_build:
     name: Code checkout
@@ -17,5 +8,5 @@ jobs:
     steps:
       - name: Run Ubuntu container in the same network
         run: |
-          echo ${{ github.event.inputs.env }} > test.txt
+          echo ${{ vars.TEST }} > test.txt
           cat test.txt
