@@ -9,7 +9,7 @@ jobs:
     name: "Terraform apply"
     uses: Ritik0306/acs_java/.github/workflows/workflow-trigger.yaml@test/percona
     with:
-      workflow: main
+      workflow: main.yaml
       ref: ${{ github.ref }}
       inputs: |
         env: ${{ vars.test }}
