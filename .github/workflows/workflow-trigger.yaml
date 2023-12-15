@@ -23,8 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "Dispatch (${{ inputs.workflow }})"
     steps:
-      -
-        name: Dispatch workflow
+      - name: Dispatch workflow
         uses: octokit/request-action@v2.x
         with:
           route: POST /repos/${{ github.repository }}/actions/workflows/:workflow/dispatches
