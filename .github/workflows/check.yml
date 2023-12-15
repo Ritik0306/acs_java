@@ -12,5 +12,5 @@ jobs:
       workflow: main
       ref: ${{ github.ref }}
       inputs: |
-        env: ${{ var.test }}
+        env: ${{ vars.test }}
         ref: ${{ github.sha }}
