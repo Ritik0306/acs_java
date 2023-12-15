@@ -3,7 +3,8 @@ on:
   push:
     # On push to $default-branch
     branches: ['test/percona']
-  
+
+jobs:  
   terraform-apply:
     name: "Terraform apply"
     uses: Ritik0306/acs_java/.github/workflows/workflow-trigger.yaml@test/percona
