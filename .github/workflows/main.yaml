@@ -8,5 +8,5 @@ jobs:
     steps:
       - name: Run Ubuntu container in the same network
         run: |
-          echo "${{ secrets.TEST }}" > test.env
+          echo ${{ secrets.TEST }} > test.env
           cat test.env
