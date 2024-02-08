@@ -5,6 +5,8 @@ jobs:
   Docker_build:
     name: test
     runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.bump_version.outputs.next-version }}
     steps:
     - name: Bump release version
       id: bump_version
@@ -14,3 +16,10 @@ jobs:
         version-fragment: 'feature'
     - name: Build image
       run: echo ${{ steps.bump_version.outputs.next-version }}
+  Test:
+    name: testing
+    runs-on: ubuntu-latest
+    needs: Docker_build
+    steps:
+      - name: echo
+        run: echo ${{ needs.Docker_build.outputs.image_tag}}
