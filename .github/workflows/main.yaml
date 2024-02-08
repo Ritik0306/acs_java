@@ -6,13 +6,11 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Get next version
-      uses: reecetech/version-increment@2023.9.3
-      id: version
+    - name: Bump release version
+      id: bump_version
+      uses: christian-draeger/increment-semantic-version@1.1.0
       with:
-        scheme: semver
-        increment: patch
+        current-version: '1.0.0' # also accepted: 'v2.11.7-alpha.3' | '2.11.7-alpha3'
+        version-fragment: 'feature'
     - name: Build image
-      run: echo ${{ steps.version.outputs.version }}
+      run: echo ${{ steps.bump_version.outputs.next-version }}
