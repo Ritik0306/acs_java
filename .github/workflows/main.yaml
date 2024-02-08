@@ -3,9 +3,16 @@ on:
   push:
 jobs:
   Docker_build:
-    name: Code checkout
+    name: test
     runs-on: ubuntu-latest
     steps:
-      - name: Run Ubuntu container in the same network
-        run: |
-          echo ${{ vars.TEST }}
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Get next version
+      uses: reecetech/version-increment@2023.9.3
+      id: version
+      with:
+        scheme: semver
+        increment: patch
+    - name: Build image
+      run: echo ${{ steps.version.outputs.version }}
