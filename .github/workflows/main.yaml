@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Bump release version
       id: bump_version
-      run: echo "tag"=$(echo ${GITHUB_RUN_NUMBER}-${GITHUB_SHA:0:3})" >> $GITHUB_OUTPUT
+      run: echo "tag=$(echo ${GITHUB_RUN_NUMBER}-${GITHUB_SHA:0:3})" >> $GITHUB_OUTPUT
     - name: Build image
       run: echo ${{ steps.bump_version.outputs.tag }}
   Test:
